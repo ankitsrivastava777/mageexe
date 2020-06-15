@@ -1,0 +1,12 @@
+<?php if ($this->getCurrencyCount() > 1) : ?>
+    <div class="currency input-group">
+        <label class="input-group-label" for="custom-currency-selector"><?php echo $this->__('Your Currency:') ?></label>
+        <select class="input-group-field" onchange="window.location.href=this.value" name="custom-currency-selector" id="custom-currency-selector">
+            <?php foreach ($this->getCurrencies() as $iso => $name) : ?>
+                <option value="<?php echo $this->getSwitchCurrencyUrl($iso) ?>" <?php if ($iso == $this->getCurrentCurrencyCode()) : ?>selected <?php endif; ?>>
+                    <?php echo $iso ?> - <?php echo $name ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+<?php endif; ?>

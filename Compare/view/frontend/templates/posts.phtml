@@ -1,0 +1,34 @@
+<?php
+$compareObject = $block->getCompareList();
+// echo $compareObject1;
+// print_r($block->getCompareList2()->getData()); 
+// echo $block->getCompareList2();
+?>
+<div class="compare-items">
+<div class="main_head">Compare Product</div>
+
+    <?php if($compareObject['count']>0)
+    {
+     foreach ($compareObject['items'] as $comparelist) {
+        $productId = $comparelist['id'];
+        $compareObject1 = $block->getCompareList1($productId);
+
+    ?>
+        <div class="compProd">
+            <span class="pro_img"><img id="pro-img" src="<?= $compareObject1; ?>" /></span>
+            <div class="pro_details">
+            <span class="pro-item-name"><a href="<?php echo $comparelist['product_url']; ?>"><?php echo $comparelist['name']; ?></a> </span>
+            <span class="pro_price"><?php echo "$".$block->getCompareList2($productId); ?> </span>
+        </div>
+        </div>
+    <?php } ?>
+</div>
+
+<?php
+    }
+else
+{?>
+<div class="empty_compare">You have no items to compare.</div>
+    <?php
+    }
+    ?>
