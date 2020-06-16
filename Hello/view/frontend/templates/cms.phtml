@@ -2,49 +2,99 @@
 $helperData = $this->helper('Excellence\Hello\Helper\Data');
 $helperData->getBannerConfig();
 ?>
-<div>
 <div id="bannervideo">
-    <iframe width="100%" height="500" src="<?= $helperData->getBannerConfig() ?>?autoplay=1" frameborder="0" allowFullScreen>
-    </iframe>
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe height="800vw" width="100%" src="<?= $helperData->getBannerConfig() ?>?rel=0&modestbranding=1&autohide=1&mute=1&showinfo=0&controls=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="content1">
+        <h1><?= $block->escapeHtmlAttr(__('Shopping')) ?></h1>
+        <p><?= $block->escapeHtmlAttr(__('Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro')) ?>.</p>
+        <button id="myBtn" onclick="myFunction()"><?= $block->escapeHtmlAttr(__('SHOP')) ?></button>
+    </div>
 </div>
-
-<div class="content1">
-  <h1><?= $block->escapeHtmlAttr(__('Shopping'))?></h1>
-  <p><?= $block->escapeHtmlAttr(__('Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro'))?>.</p>
-  <button id="myBtn" onclick="myFunction()"><?= $block->escapeHtmlAttr(__('SHOP'))?></button>
 </div>
-</div>
-
 
 <style>
-    #bannervideo {
-    position: unset;
-    display: block;
-    pointer-events: auto;
-    width: 100% !important;
-    height: 100% !important;
-    left: 0px;
-    top: 0px;
-    z-index: 0;
-    visibility: visible;
+    * {
+        box-sizing: border-box;
     }
+
+    .video-background {
+        background: #000;
+        position: unset;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: -99;
+    }
+
+    #myBtn {
+        width: 200px;
+        font-size: 18px;
+        padding: 10px;
+        border: none;
+        background: green;
+        color: #fff;
+        cursor: pointer;
+    }
+
     .content1 {
         position: relative;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    width: 90%;
-    left: 0;
-    bottom: 225px;
-    margin-left: 25px;
-}
+        background: rgba(0, 0, 0, 0.5);
+        color: #f1f1f1;
+        width: 90%;
+        left: 0;
+        bottom: 225px;
+        margin-left: 25px;
+    }
 
-#myBtn {
-  width: 200px;
-  font-size: 18px;
-  padding: 10px;
-  border: none;
-  background: green;
-  color: #fff;
-  cursor: pointer;
-}
+    .video-foreground,
+    .video-background iframe {
+        position: unset;
+        /* top: 51vh; */
+        left: 0;
+        width: 100%;
+        pointer-events: none;
+    }
+
+    #vidtop-content {
+        top: 0;
+        color: #fff;
+    }
+
+    #video-foreground iframe {
+        height: 40vw !important;
+    }
+
+    .vid-info {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 33%;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        padding: 1rem;
+        font-family: Avenir, Helvetica, sans-serif;
+    }
+
+    .vid-info h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-top: 0;
+        line-height: 1.2;
+    }
+
+    .vid-info a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        background: rgba(0, 0, 0, 0.5);
+        transition: .6s background;
+        border-bottom: none;
+        margin: 1rem auto;
+        text-align: center;
+    }
 </style>

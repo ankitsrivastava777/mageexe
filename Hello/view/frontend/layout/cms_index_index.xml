@@ -3,8 +3,8 @@
     <body>
         <referenceContainer name="page.wrapper">
             <container name="your.custom.name" as="your-custom" label="Your Label Name" htmlTag="div" htmlClass="your-class" htmlId="your-id" before="main.content">
-            <block class="Excellence\Hello\Block\Banner" template="Excellence_Hello::cms.phtml"/>
-        </container>
-    </referenceContainer>
+                <block class="Excellence\Hello\Block\Banner" template="Excellence_Hello::cms.phtml" />
+            </container>
+        </referenceContainer>
     </body>
 </page>
