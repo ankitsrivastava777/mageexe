@@ -9,16 +9,16 @@ $helperData->getBannerConfig();
 </div>
 
 <div class="content1">
-  <h1>Shopping</h1>
-  <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
-  <button id="myBtn" onclick="myFunction()">Shop</button>
+  <h1><?= $block->escapeHtmlAttr(__('Shopping'))?></h1>
+  <p><?= $block->escapeHtmlAttr(__('Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro'))?>.</p>
+  <button id="myBtn" onclick="myFunction()"><?= $block->escapeHtmlAttr(__('SHOP'))?></button>
 </div>
 </div>
 
 
 <style>
     #bannervideo {
-        position: unset;
+    position: unset;
     display: block;
     pointer-events: auto;
     width: 100% !important;
