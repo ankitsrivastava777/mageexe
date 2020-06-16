@@ -1,0 +1,50 @@
+<?php
+$helperData = $this->helper('Excellence\Hello\Helper\Data');
+$helperData->getBannerConfig();
+?>
+<div>
+<div id="bannervideo">
+    <iframe width="100%" height="500" src="<?= $helperData->getBannerConfig() ?>?autoplay=1" frameborder="0" allowFullScreen>
+    </iframe>
+</div>
+
+<div class="content1">
+  <h1>Shopping</h1>
+  <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei. Id qui nemore latine molestiae, ad mutat oblique delicatissimi pro.</p>
+  <button id="myBtn" onclick="myFunction()">Shop</button>
+</div>
+</div>
+
+
+<style>
+    #bannervideo {
+        position: unset;
+    display: block;
+    pointer-events: auto;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0px;
+    top: 0px;
+    z-index: 0;
+    visibility: visible;
+    }
+    .content1 {
+        position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 90%;
+    left: 0;
+    bottom: 225px;
+    margin-left: 25px;
+}
+
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: green;
+  color: #fff;
+  cursor: pointer;
+}
+</style>

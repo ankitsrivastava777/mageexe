@@ -1,6 +1,6 @@
 <?php
 
-namespace Excellence\VideoBanner\Helper;
+namespace Excellence\Hello\Helper;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {

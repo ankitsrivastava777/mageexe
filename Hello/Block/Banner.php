@@ -1,6 +1,6 @@
 <?php
 
-namespace Excellence\VideoBanner\Block;
+namespace Excellence\Hello\Block;
 
 class Banner extends \Magento\Framework\View\Element\Template
 {
@@ -11,7 +11,7 @@ class Banner extends \Magento\Framework\View\Element\Template
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Excellence\VideoBanner\Helper\Data $helperData,
+        \Excellence\Hello\Helper\Data $helperData,
 
         array $data = []
     ) {
