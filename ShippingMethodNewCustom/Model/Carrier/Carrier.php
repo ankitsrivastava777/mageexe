@@ -87,8 +87,6 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
 
                         /** @var \Magento\Shipping\Model\Rate\Result $result */
                         $result = $this->_rateResultFactory->create();
-
-                        // $shippingPrice = $this->getConfigData('price');
                         $shippingPrice = $grid['shippingprice'];
                         $method = $this->_rateMethodFactory->create();
                         $method->setCarrier($this->_code);
