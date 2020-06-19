@@ -111,10 +111,12 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 
             return $this;
         } catch (Exception $e) {
-            echo $e->getMessage();
-            die;
+            $this->messageManager->addErrorMessage(__(
+                'Something went wrong. Please try again later'
+            ));
         }
     }
+
 
     /**
      * @param \Magento\Backend\Block\Widget\Grid\Column $column
