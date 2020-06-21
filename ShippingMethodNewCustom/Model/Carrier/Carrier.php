@@ -12,6 +12,7 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
      */
     protected $_code = 'carrier';
     protected $_ShippingFactory;
+    protected $_cart;
 
     protected $_logger;
     /**
@@ -45,12 +46,14 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
         \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
         \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory,
         \Excellence\ShippingMethodNewCustom\Model\ResourceModel\Shipping\CollectionFactory $shippingFactory,
+        \Magento\Checkout\Model\Cart $cartModel,
         array $data = []
     ) {
         $this->_rateResultFactory = $rateResultFactory;
         $this->_rateMethodFactory = $rateMethodFactory;
         $this->_shippingFactory = $shippingFactory;
         $this->_logger = $logger;
+        $this->_cart = $cartModel;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
     }
 
@@ -65,13 +68,11 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
         }
         $grid = $this->_shippingFactory->create();
 
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $cart = $objectManager->get('\Magento\Checkout\Model\Cart');
-        $items = $cart->getQuote()->getAllItems();
+        $items = $this->_cart->getQuote()->getAllItems();
 
         $weight = 0;
-        foreach ($items as $item) {
-            $weight += ($item->getWeight() * $item->getQty());
+        foreach($items as $item) {
+            $weight += ($item->getWeight() * $item->getQty()) ;        
         }
 
         $country = $request->getDestCountryId();
