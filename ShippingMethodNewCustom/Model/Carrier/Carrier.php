@@ -67,9 +67,7 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
             return false;
         }
         $grid = $this->_shippingFactory->create();
-
         $items = $this->_cart->getQuote()->getAllItems();
-
         $weight = 0;
         foreach ($items as $item) {
             $weight += ($item->getWeight() * $item->getQty());
@@ -78,7 +76,6 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
         $country = $request->getDestCountryId();
         $postalcode = $request->getDestPostcode();
         $grid = $this->_shippingFactory->create();
-
         $cont = $grid->addFieldToFilter('country', ['eq' => $country]);
 
         if ($cont->count() > 0) {

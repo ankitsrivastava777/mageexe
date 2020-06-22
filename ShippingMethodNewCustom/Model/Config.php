@@ -11,7 +11,6 @@ namespace Excellence\ShippingMethodNewCustom\Model;
  */
 class Config extends \Magento\Framework\DataObject
 {
-
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
@@ -66,7 +65,6 @@ class Config extends \Magento\Framework\DataObject
         $this->_storeId = (int) $this->_storeManager->getStore()->getId();
         $this->_storeCode = $this->_storeManager->getStore()->getCode();
     }
-
     /**
      * Function for getting Config value of current store
      * @param string $path,
@@ -75,7 +73,6 @@ class Config extends \Magento\Framework\DataObject
     {
         return $this->_scopeConfig->getValue($path, 'store', $this->_storeCode);
     }
-
     /**
      * Function for setting Config value of current store
      * @param string $path,
@@ -90,7 +87,6 @@ class Config extends \Magento\Framework\DataObject
             'scope_code' => $this->_storeCode,
             'value' => $value,
         ];
-
         $this->_backendModel->addData($data);
         $this->_transaction->addObject($this->_backendModel);
         $this->_transaction->save();

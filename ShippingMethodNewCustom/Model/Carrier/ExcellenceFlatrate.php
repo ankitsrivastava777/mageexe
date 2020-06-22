@@ -11,19 +11,15 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
      * @var string
      */
     protected $_code = 'excellenceflatrate';
-
     protected $_logger;
     /**
      * @var bool
      */
     protected $_isFixed = true;
-
     /**
      * @var \Magento\Shipping\Model\Rate\ResultFactory
      */
     protected $_rateResultFactory;
-
-
     /**
      * @var \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory
      */
@@ -60,10 +56,8 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
         if (!$this->getConfigFlag('active')) {
             return false;
         }
-
         /** @var \Magento\Shipping\Model\Rate\Result $result */
         $result = $this->_rateResultFactory->create();
-
         $shippingPrice = $this->getConfigData('price');
         $method = $this->_rateMethodFactory->create();
         $method->setCarrier($this->_code);
@@ -76,13 +70,11 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
 
         return $result;
     }
-
     /**
      * @return array
      */
     public function getAllowedMethods()
     {
-
         return [$this->_code => $this->getConfigData('name')];
     }
 }
