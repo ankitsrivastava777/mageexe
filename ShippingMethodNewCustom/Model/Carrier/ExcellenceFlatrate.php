@@ -1,4 +1,5 @@
 <?php
+
 namespace Excellence\ShippingMethodNewCustom\Model\Carrier;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
@@ -10,8 +11,8 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
      * @var string
      */
     protected $_code = 'excellenceflatrate';
-	
-	protected $_logger;
+
+    protected $_logger;
     /**
      * @var bool
      */
@@ -46,7 +47,7 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
     ) {
         $this->_rateResultFactory = $rateResultFactory;
         $this->_rateMethodFactory = $rateMethodFactory;
-		$this->_logger = $logger;
+        $this->_logger = $logger;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
     }
 
@@ -62,17 +63,16 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
 
         /** @var \Magento\Shipping\Model\Rate\Result $result */
         $result = $this->_rateResultFactory->create();
-		
-		$shippingPrice = $this->getConfigData('price');
-		$method = $this->_rateMethodFactory->create();
-		$method->setCarrier($this->_code);
-		$method->setCarrierTitle($this->getConfigData('title'));
-		$method->setMethod($this->_code);
-		$method->setMethodTitle($this->getConfigData('name'));
-		$method->setPrice($shippingPrice);
-		$method->setCost($shippingPrice);
-		$result->append($method);
-        
+
+        $shippingPrice = $this->getConfigData('price');
+        $method = $this->_rateMethodFactory->create();
+        $method->setCarrier($this->_code);
+        $method->setCarrierTitle($this->getConfigData('title'));
+        $method->setMethod($this->_code);
+        $method->setMethodTitle($this->getConfigData('name'));
+        $method->setPrice($shippingPrice);
+        $method->setCost($shippingPrice);
+        $result->append($method);
 
         return $result;
     }
@@ -82,7 +82,7 @@ class ExcellenceFlatrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier
      */
     public function getAllowedMethods()
     {
-		
-        return [$this->_code=> $this->getConfigData('name')];
+
+        return [$this->_code => $this->getConfigData('name')];
     }
 }

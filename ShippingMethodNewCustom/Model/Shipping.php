@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2015 Excellence. All rights reserved.
  */
@@ -37,6 +38,4 @@ class Shipping extends \Magento\Framework\Model\AbstractModel
     {
         $this->_init('Excellence\ShippingMethodNewCustom\Model\ResourceModel\Shipping');
     }
-
-   
 }

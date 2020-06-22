@@ -71,34 +71,45 @@ class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
         $items = $this->_cart->getQuote()->getAllItems();
 
         $weight = 0;
-        foreach($items as $item) {
-            $weight += ($item->getWeight() * $item->getQty()) ;        
+        foreach ($items as $item) {
+            $weight += ($item->getWeight() * $item->getQty());
         }
 
         $country = $request->getDestCountryId();
         $postalcode = $request->getDestPostcode();
-        foreach ($grid as $grid) {
+        $grid = $this->_shippingFactory->create();
 
-            if ($country == $grid['country']) {
+        $cont = $grid->addFieldToFilter('country', ['eq' => $country]);
 
-                if ($weight <= $grid['maxallowedweight']) {
+        if ($cont->count() > 0) {
+            $shippingPrice = 0;
+            foreach ($cont as $contt) {
+                $shippingPrice = $contt['shippingprice'];
+            }
+            $weighht = 0;
+            foreach ($cont as $weigh) {
+                $weighht = $weigh['maxallowedweight'];
+            }
+            $zip = 0;
+            $zip2 = 0;
+            foreach ($cont as $zipp) {
+                $zip = $zipp['zipcode'];
+                $zip2 = explode(",", $zipp['zipcode']);
+            }
+            if ($postalcode == $zip or $zip == '*' or in_array($postalcode, $zip2)) {
+                if ($weight <= $weighht) {
+                    /** @var \Magento\Shipping\Model\Rate\Result $result */
+                    $result = $this->_rateResultFactory->create();
+                    $method = $this->_rateMethodFactory->create();
+                    $method->setCarrier($this->_code);
+                    $method->setCarrierTitle($this->getConfigData('title'));
+                    $method->setMethod($this->_code);
+                    $method->setMethodTitle($this->getConfigData('name'));
+                    $method->setPrice($shippingPrice);
+                    $method->setCost($shippingPrice);
+                    $result->append($method);
 
-                    $zipcode = explode(",", $grid['zipcode']);
-                    if (in_array($postalcode, $zipcode) or $grid['zipcode'] == '*') {
-
-                        /** @var \Magento\Shipping\Model\Rate\Result $result */
-                        $result = $this->_rateResultFactory->create();
-                        $shippingPrice = $grid['shippingprice'];
-                        $method = $this->_rateMethodFactory->create();
-                        $method->setCarrier($this->_code);
-                        $method->setCarrierTitle($this->getConfigData('title'));
-                        $method->setMethod($this->_code);
-                        $method->setMethodTitle($this->getConfigData('name'));
-                        $method->setPrice($shippingPrice);
-                        $method->setCost($shippingPrice);
-                        $result->append($method);
-                        return $result;
-                    }
+                    return $result;
                 }
             }
         }
